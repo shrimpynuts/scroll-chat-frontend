@@ -6,7 +6,7 @@ import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
 
 const mockMessages: IMessage[] = [
   {
-    text: "What is Scroll?\n",
+    text: "What is Scroll?",
     isUser: true,
     created_at: moment(),
     id: "1",
@@ -17,43 +17,8 @@ const mockMessages: IMessage[] = [
     created_at: moment(),
     id: "1",
   },
-  {
-    text: "What is Scroll?\n",
-    isUser: true,
-    created_at: moment(),
-    id: "1",
-  },
-  {
-    text: " Scroll is a test network consisting.\nSOURCES: https://guide.scroll.io/",
-    isUser: false,
-    created_at: moment(),
-    id: "1",
-  },
-  {
-    text: "What is Scroll?\n",
-    isUser: true,
-    created_at: moment(),
-    id: "1",
-  },
-  {
-    text: " Scroll is a test network consisting.\nSOURCES: https://guide.scroll.io/",
-    isUser: false,
-    created_at: moment(),
-    id: "1",
-  },
-  {
-    text: "What is Scroll?\n",
-    isUser: true,
-    created_at: moment(),
-    id: "1",
-  },
-  {
-    text: " Scroll is a test network consisting.\nSOURCES: https://guide.scroll.io/",
-    isUser: false,
-    created_at: moment(),
-    id: "1",
-  },
 ];
+
 export interface IMessage {
   created_at: Moment;
   id: string;
@@ -62,14 +27,19 @@ export interface IMessage {
 }
 
 export default function Search() {
-  const [textArea, setTextArea] = useState<string>("What is Scroll?\n");
+  const [textArea, setTextArea] = useState<string>("");
   const [messages, setMessages] = useState<IMessage[]>(mockMessages);
 
   // Some ref's to manipulate scroll position
   const messageEndRef = useRef<HTMLInputElement>(null);
   const inputEl = useRef<HTMLInputElement>(null);
 
+  const scrollIsTyping = messages.length % 2 === 1;
   const entry = useIntersectionObserver(messageEndRef, {});
+
+  useEffect(() => {
+    inputEl.current && inputEl.current?.focus();
+  }, [inputEl]);
 
   useEffect(() => {
     inputEl.current && inputEl.current?.focus();
@@ -110,8 +80,8 @@ export default function Search() {
         id: "1",
       },
     ]);
-    // getAnswer(textArea);
-    // setTextArea("");
+    getAnswer(textArea);
+    setTextArea("");
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -139,7 +109,7 @@ export default function Search() {
             }`}
             onClick={scrollToBottom}
           >
-            <ChevronDownIcon className="h-6 w-6 text-gray-600" />
+            <ChevronDownIcon className="h-6 w-6  text-gray-600" />
           </div>
           <div ref={messageEndRef}></div>
         </div>
@@ -147,17 +117,20 @@ export default function Search() {
           <input
             type="text"
             onKeyDown={onKeyDown}
-            className="w-2/3 whitespace-nowrap rounded-xl border-gray-300 focus:ring-0 focus:ring-offset-0"
+            disabled={scrollIsTyping}
+            className="w-2/3 whitespace-nowrap rounded-xl border-gray-300 focus:ring-0 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-500"
             value={textArea}
             onChange={onTextAreaChange}
             autoFocus
+            placeholder="Ask a question about Scroll..."
             ref={inputEl}
           />
           <button
             onClick={triggerCall}
-            className="rounded-xl border border-gray-300 p-2"
+            disabled={scrollIsTyping}
+            className="rounded-xl border border-gray-300 p-2 hover:border-blue-600 disabled:cursor-not-allowed disabled:text-gray-500"
           >
-            <ArrowRightIcon className="h-6 w-6" />
+            <ArrowRightIcon className="h-6 w-6 text-gray-600" />
           </button>
         </div>
       </div>

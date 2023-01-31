@@ -6,10 +6,6 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const { question } = req.body;
-    console.log(question);
-
-    // Create a post request to https://scroll-chat-backend.vercel.app/api/get_answer
-    // with a body of { "question": question } using fetch.
 
     const backendEndpoint =
       "https://scroll-chat-backend.vercel.app/api/get_answer";
