@@ -3,8 +3,8 @@ import Head from "next/head";
 const DOMAIN = "https://precedent.vercel.app";
 
 export default function Meta({
-  title = "Search ENS",
-  description = "Find available ENS domains in bulk.",
+  title = "scroll.chat",
+  description = "Scroll.io support chat bot.",
   image = `${DOMAIN}/api/og`,
 }: {
   title?: string;
