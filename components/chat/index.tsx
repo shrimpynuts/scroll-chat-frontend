@@ -98,7 +98,7 @@ export default function Search() {
   return (
     <div className="relative w-full rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-8">
       <div className="relative flex w-full flex-col justify-between">
-        <div className=" flex h-[36rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide">
+        <div className=" flex h-[26rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide md:h-[36rem]">
           {messages.map((message, index) => (
             <div key={index}>
               <Message message={message} />
