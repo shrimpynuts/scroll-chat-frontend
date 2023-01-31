@@ -73,20 +73,22 @@ export default function Search() {
     ]);
   };
 
+  const triggerCall = async () => {
+    setMessages([
+      ...messages,
+      {
+        text: textArea,
+        isUser: true,
+        created_at: moment(),
+        id: "1",
+      },
+    ]);
+    getAnswer(textArea);
+    setTextArea("");
+  };
+
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter") {
-      setMessages([
-        ...messages,
-        {
-          text: textArea,
-          isUser: true,
-          created_at: moment(),
-          id: "1",
-        },
-      ]);
-      getAnswer(textArea);
-      setTextArea("");
-    }
+    if (event.key === "Enter") triggerCall();
   };
 
   return (
