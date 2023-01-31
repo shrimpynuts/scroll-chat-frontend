@@ -1,5 +1,4 @@
 import { IMessage } from "@/components/chat";
-import moment from "moment";
 
 interface IMessageProps {
   message: IMessage;
@@ -12,14 +11,14 @@ export default function Message({
 }: IMessageProps) {
   return (
     <div
-      className={`flex items-center space-x-4 ${
+      className={`flex space-x-4 ${
         isUser ? "flex-row-reverse space-x-reverse" : ""
       }`}
     >
-      <div className="w-12 shrink-0">
+      <div className="w-12 shrink-0 items-start">
         {!isThreadContinuation && (
           <img
-            className={`mt-4 h-10 w-10 self-end rounded-full  `}
+            className={`mt-4 h-10 w-10 self-end rounded-full border-2`}
             src={
               isUser
                 ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"

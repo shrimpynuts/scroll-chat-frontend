@@ -16,6 +16,18 @@ const mockMessages: IMessage[] = [
     created_at: moment(),
     id: "1",
   },
+  {
+    text: "What is Scroll?\n",
+    isUser: true,
+    created_at: moment(),
+    id: "1",
+  },
+  {
+    text: " Scroll is a test network consisting.\nSOURCES: https://guide.scroll.io/",
+    isUser: false,
+    created_at: moment(),
+    id: "1",
+  },
 ];
 export interface IMessage {
   created_at: Moment;
@@ -39,13 +51,15 @@ export default function Search() {
     }
   }, []);
 
+  console.log({ messages });
+
   const getAnswer = async (question: string) => {
     const response = await fetch("/api/get_answer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ question: textArea }),
+      body: JSON.stringify({ question }),
     });
     const data = await response.json();
     setMessages([
@@ -78,16 +92,18 @@ export default function Search() {
   return (
     <div className="relative w-full rounded-xl border border-gray-200 bg-white p-8 shadow-md">
       <div className="flex h-[36rem] w-full flex-col justify-between">
-        <div className="">
+        <div className="flex flex-col space-y-2">
           {messages.map((message, index) => (
-            <Message message={message} key={index} />
+            <div key={index}>
+              <Message message={message} />
+            </div>
           ))}
         </div>
-        <div className="flex items-center justify-end space-x-4">
+        <div className="flex items-center justify-end space-x-2">
           <input
             type="text"
             onKeyDown={onKeyDown}
-            className="w-1/2 whitespace-nowrap rounded-xl border-gray-300 focus:ring-0 focus:ring-offset-0"
+            className="w-2/3 whitespace-nowrap rounded-xl border-gray-300 focus:ring-0 focus:ring-offset-0"
             value={textArea}
             onChange={onTextAreaChange}
             autoFocus
