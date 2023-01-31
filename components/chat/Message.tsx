@@ -15,7 +15,7 @@ export default function Message({
         isUser ? "flex-row-reverse space-x-reverse" : ""
       }`}
     >
-      <div className="w-12 shrink-0 items-start">
+      <div className="shrink-0 items-start">
         {!isThreadContinuation && (
           <img
             className={`mt-4 h-10 w-10 self-end rounded-full border-2`}
@@ -30,7 +30,9 @@ export default function Message({
 
       <div className="flex max-w-xl flex-col text-sm">
         {!isThreadContinuation && (
-          <span className={`font-semibold`}>{isUser ? "User" : "Scroll"}</span>
+          <span className={`font-semibold ${isUser ? "self-end" : ""}`}>
+            {isUser ? "User" : "Scroll"}
+          </span>
         )}
         <div className="rounded-xl border border-gray-300 px-4 py-2 ">
           <p className="">{text}</p>
