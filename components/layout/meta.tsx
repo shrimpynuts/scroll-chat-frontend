@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const DOMAIN = "https://precedent.vercel.app";
+const DOMAIN = "https://scroll-chat-frontend.vercel.app/";
 
 export default function Meta({
   title = "scroll.chat",
