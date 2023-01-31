@@ -13,15 +13,13 @@ export default function Message({
   return (
     <div
       className={`flex items-center space-x-4 ${
-        isUser ? "flex-row-reverse" : ""
+        isUser ? "flex-row-reverse space-x-reverse" : ""
       }`}
     >
-      <div className="w-12">
+      <div className="w-12 shrink-0">
         {!isThreadContinuation && (
           <img
-            className={`mt-4 h-10 w-10 self-end rounded-full  ${
-              isUser ? "ml-2" : "mr-2"
-            }`}
+            className={`mt-4 h-10 w-10 self-end rounded-full  `}
             src={
               isUser
                 ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
@@ -31,7 +29,7 @@ export default function Message({
         )}
       </div>
 
-      <div className="flex flex-col text-sm">
+      <div className="flex max-w-xl flex-col text-sm">
         {!isThreadContinuation && (
           <span className={`font-semibold`}>{isUser ? "User" : "Scroll"}</span>
         )}
