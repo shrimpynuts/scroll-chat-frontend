@@ -96,9 +96,9 @@ export default function Search() {
   };
 
   return (
-    <div className="relative w-full rounded-xl border border-gray-200 bg-white p-8 shadow-md">
+    <div className="relative w-full rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-8">
       <div className="relative flex w-full flex-col justify-between">
-        <div className="-mr-4 flex h-[36rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide">
+        <div className=" flex h-[36rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide">
           {messages.map((message, index) => (
             <div key={index}>
               <Message message={message} />
@@ -119,7 +119,7 @@ export default function Search() {
             type="text"
             onKeyDown={onKeyDown}
             disabled={scrollIsTyping}
-            className="w-2/3 whitespace-nowrap rounded-xl border-gray-300 focus:ring-0 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-500"
+            className="w-full whitespace-nowrap rounded-xl border-gray-300 focus:ring-0 focus:ring-offset-0 disabled:cursor-not-allowed disabled:text-gray-500 md:w-2/3"
             value={textArea}
             onChange={onTextAreaChange}
             autoFocus
