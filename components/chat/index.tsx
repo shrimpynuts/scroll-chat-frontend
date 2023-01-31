@@ -1,7 +1,8 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import Message from "./Message";
 import moment, { Moment } from "moment";
+import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
 
 const mockMessages: IMessage[] = [
   {
@@ -68,6 +69,8 @@ export default function Search() {
   const messageEndRef = useRef<HTMLInputElement>(null);
   const inputEl = useRef<HTMLInputElement>(null);
 
+  const entry = useIntersectionObserver(messageEndRef, {});
+
   useEffect(() => {
     inputEl.current && inputEl.current?.focus();
     scrollToBottom();
@@ -107,8 +110,8 @@ export default function Search() {
         id: "1",
       },
     ]);
-    getAnswer(textArea);
-    setTextArea("");
+    // getAnswer(textArea);
+    // setTextArea("");
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -123,13 +126,21 @@ export default function Search() {
 
   return (
     <div className="relative w-full rounded-xl border border-gray-200 bg-white p-8 shadow-md">
-      <div className="flex w-full flex-col justify-between">
-        <div className="-mr-4 flex h-[36rem] flex-col space-y-2 overflow-y-scroll">
+      <div className="relative flex w-full flex-col justify-between">
+        <div className="-mr-4 flex h-[36rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide">
           {messages.map((message, index) => (
             <div key={index}>
               <Message message={message} />
             </div>
           ))}
+          <div
+            className={`absolute bottom-[4.8rem] -right-[0.5rem] cursor-pointer rounded-full border border-gray-600 bg-white ${
+              entry?.isIntersecting ? "hidden" : "visible"
+            }`}
+            onClick={scrollToBottom}
+          >
+            <ChevronDownIcon className="h-6 w-6 text-gray-600" />
+          </div>
           <div ref={messageEndRef}></div>
         </div>
         <div className="mt-8 flex items-center justify-end space-x-2">
