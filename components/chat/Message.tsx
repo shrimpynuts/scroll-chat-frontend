@@ -5,6 +5,34 @@ interface IMessageProps {
   isThreadContinuation?: boolean;
 }
 
+const ScrollMessage = ({ text }: { text: string }) => {
+  const [first, rest] = text.split("SOURCES: ");
+  const sources = rest.split(", ");
+  return (
+    <div>
+      <p>{first}</p>
+      <div>
+        Source{sources.length > 1 ? "s" : ""}:{" "}
+        <span className="space-x-1">
+          {sources.map((source, index) => {
+            return (
+              <a
+                href={source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600"
+                key={index}
+              >
+                {source}
+              </a>
+            );
+          })}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 export default function Message({
   message: { text, isUser },
   isThreadContinuation,
@@ -35,7 +63,7 @@ export default function Message({
           </span>
         )}
         <div className="rounded-xl border border-gray-300 px-4 py-2 ">
-          <p className="">{text}</p>
+          {isUser ? <p className="">{text}</p> : <ScrollMessage text={text} />}
         </div>
       </div>
     </div>
