@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Layout>
       <motion.div
-        className="max-w-4xl px-5 xl:px-0"
+        className="w-full max-w-4xl px-5 xl:px-0"
         initial="hidden"
         whileInView="show"
         animate="show"
