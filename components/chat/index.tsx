@@ -68,6 +68,7 @@ export default function Search() {
         id: "1",
       },
     ]);
+    inputEl.current && inputEl.current?.focus();
   };
 
   const triggerCall = async () => {
@@ -122,13 +123,17 @@ export default function Search() {
             value={textArea}
             onChange={onTextAreaChange}
             autoFocus
-            placeholder="Ask a question about Scroll..."
+            placeholder={
+              scrollIsTyping
+                ? "Scroll is thinking..."
+                : "Ask a question about Scroll..."
+            }
             ref={inputEl}
           />
           <button
             onClick={triggerCall}
             disabled={scrollIsTyping}
-            className="rounded-xl border border-gray-300 p-2 hover:border-blue-600 disabled:cursor-not-allowed disabled:text-gray-500"
+            className="rounded-xl border border-gray-300 p-2 hover:border-blue-600 disabled:cursor-not-allowed disabled:text-gray-500 disabled:hover:border-gray-300"
           >
             <ArrowRightIcon className="h-6 w-6 text-gray-600" />
           </button>
