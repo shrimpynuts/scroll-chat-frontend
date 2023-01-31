@@ -1,13 +1,7 @@
-import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
-import { AnimatePresence, motion } from "framer-motion";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
-import { useSignInModal } from "./sign-in-modal";
-import Emoji from "../shared/emoji";
 
 export default function Layout({
   meta,
@@ -20,15 +14,12 @@ export default function Layout({
   };
   children: ReactNode;
 }) {
-  const { data: session, status } = useSession();
-  const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
 
   return (
     <>
       <Meta {...meta} />
-      <SignInModal />
-      <div className="fixed h-screen w-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
+      <div className="fixed h-screen w-screen bg-gray-200 " />
       <div
         className={`fixed top-0 w-full ${
           scrolled
@@ -36,49 +27,18 @@ export default function Layout({
             : "bg-white/0"
         } z-30 transition-all`}
       >
-        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
+        <div className="mx-5 flex h-16 max-w-4xl items-center justify-between xl:mx-auto">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <Emoji
-              className="cursor-pointer text-4xl "
-              label="logo"
-              symbol="🔍"
-            />
-
-            <p className="ml-2 font-bold">Search ENS</p>
+            <p className="ml-2 font-serif font-bold text-gray-800">
+              scroll.chat
+            </p>
           </Link>
-          <div>
-            {/* <AnimatePresence>
-              {!session && status !== "loading" ? (
-                <motion.button
-                  className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                  onClick={() => setShowSignInModal(true)}
-                  {...FADE_IN_ANIMATION_SETTINGS}
-                >
-                  Sign In
-                </motion.button>
-              ) : (
-                <UserDropdown />
-              )}
-            </AnimatePresence> */}
-          </div>
+          <div></div>
         </div>
       </div>
       <main className="flex w-screen flex-col items-center justify-center py-32">
         {children}
       </main>
-      {/* <div className="absolute w-full border-t border-gray-200 bg-white py-5 text-center">
-        <p className="text-gray-500">
-          A free template by{" "}
-          <a
-            className="font-medium text-gray-800 underline transition-colors"
-            href="https://twitter.com/steventey"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Steven Tey
-          </a>
-        </p>
-      </div> */}
     </>
   );
 }
