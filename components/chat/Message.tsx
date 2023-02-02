@@ -8,27 +8,30 @@ interface IMessageProps {
 const ScrollMessage = ({ text }: { text: string }) => {
   const [first, rest] = text.split("SOURCES: ");
   const sources = rest.split(", ");
+  console.log({ first });
   return (
     <div>
       <p>{first}</p>
-      <div>
-        Source{sources.length > 1 ? "s" : ""}:{" "}
-        <span className="space-x-1">
-          {sources.map((source, index) => {
-            return (
-              <a
-                href={source}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600"
-                key={index}
-              >
-                {source}
-              </a>
-            );
-          })}
-        </span>
-      </div>
+      {first !== ` I don't know.\n` && (
+        <div>
+          Source{sources.length > 1 ? "s" : ""}:{" "}
+          <span className="space-x-1">
+            {sources.map((source, index) => {
+              return (
+                <a
+                  href={source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600"
+                  key={index}
+                >
+                  {source.length > 26 ? source.slice(0, 26) + "..." : source}
+                </a>
+              );
+            })}
+          </span>
+        </div>
+      )}
     </div>
   );
 };
@@ -62,7 +65,7 @@ export default function Message({
             {isUser ? "User" : "Scroll"}
           </span>
         )}
-        <div className="rounded-xl border border-gray-300 px-4 py-2 ">
+        <div className="wrap overflow-hidden rounded-xl border border-gray-300 px-4 py-2 ">
           {isUser ? <p className="">{text}</p> : <ScrollMessage text={text} />}
         </div>
       </div>
