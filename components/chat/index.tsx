@@ -72,6 +72,7 @@ export default function Search() {
   };
 
   const triggerCall = async () => {
+    if (textArea === "") return;
     setMessages((oldMessages) => [
       ...oldMessages,
       {
