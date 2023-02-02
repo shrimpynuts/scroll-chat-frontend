@@ -7,8 +7,8 @@ export default async function handler(
   if (req.method === "POST") {
     const { question } = req.body;
 
-    const backendEndpoint =
-      "https://scroll-chat-backend.vercel.app/api/get_answer";
+    const backendServer = "https://scroll-chat-backend.herokuapp.com";
+    const backendEndpoint = `${backendServer}/api/get_answer`;
 
     const result = await fetch(backendEndpoint, {
       method: "POST",
