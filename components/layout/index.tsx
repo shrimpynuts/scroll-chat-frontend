@@ -36,7 +36,7 @@ export default function Layout({
           <div></div>
         </div>
       </div>
-      <main className="flex w-screen flex-col items-center justify-center pt-16 md:py-24">
+      <main className="flex w-screen flex-col items-center justify-center pt-16">
         {children}
       </main>
     </>

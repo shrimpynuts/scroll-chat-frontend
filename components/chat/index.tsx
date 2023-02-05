@@ -105,7 +105,7 @@ export default function Search() {
   return (
     <div className="relative w-full rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-8">
       <div className="relative flex w-full flex-col justify-between">
-        <div className=" flex h-[26rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide md:h-[36rem]">
+        <div className=" flex h-[24rem] flex-col space-y-2 overflow-y-scroll scrollbar-hide lg:h-[26rem]">
           {messages.map((message, index) => (
             <div key={index}>
               <Message message={message} />
@@ -145,7 +145,7 @@ export default function Search() {
             <ArrowRightIcon className="h-6 w-6 text-gray-600" />
           </button>
         </div>
-        <div className="mt-2 flex justify-end space-x-2">
+        <div className="mt-2 flex flex-col items-end justify-end space-x-2 md:flex-row md:items-center">
           {exampleQuestions.map((question, index) => (
             <div
               key={index}
