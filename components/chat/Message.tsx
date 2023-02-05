@@ -8,7 +8,6 @@ interface IMessageProps {
 const ScrollMessage = ({ text }: { text: string }) => {
   const [first, rest] = text.split("SOURCES: ");
   const sources = rest.split(", ");
-  console.log({ first });
   return (
     <div>
       <p>{first}</p>
