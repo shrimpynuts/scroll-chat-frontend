@@ -17,6 +17,10 @@ const ScrollMessage = ({ text }: { text: string }) => {
           Source{linksInText.length > 1 ? "s" : ""}:{" "}
           <span className="space-x-1">
             {linksInText.map((source, index) => {
+              // Remove comma at end of link if present
+              if (source[source.length - 1] === ",") {
+                source = source.slice(0, -1);
+              }
               return (
                 <a
                   href={source}

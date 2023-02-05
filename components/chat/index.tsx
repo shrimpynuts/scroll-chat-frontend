@@ -98,7 +98,8 @@ export default function Search() {
 
   const exampleQuestions = [
     "How does Scroll work?",
-    "How do I deploy a contract?",
+    "What is a zk rollup?",
+    "How do I deploy a contract on Scroll?",
     "Why should I build on Scroll?",
   ];
 
