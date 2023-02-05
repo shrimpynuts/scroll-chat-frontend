@@ -12,7 +12,7 @@ const ScrollMessage = ({ text }: { text: string }) => {
   return (
     <div>
       <p>{first}</p>
-      {first !== ` I don't know.\n` && (
+      {linksInText.length > 0 && (
         <div>
           Source{linksInText.length > 1 ? "s" : ""}:{" "}
           <span className="space-x-1">
