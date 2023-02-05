@@ -6,16 +6,17 @@ interface IMessageProps {
 }
 
 const ScrollMessage = ({ text }: { text: string }) => {
-  const [first, rest] = text.split("SOURCES: ");
-  const sources = rest.split(", ");
+  const [first, rest] = text.split("\n");
+  var urlRegex = /(https?:\/\/[^\s]+)/g;
+  var linksInText = text.match(urlRegex) || [];
   return (
     <div>
       <p>{first}</p>
       {first !== ` I don't know.\n` && (
         <div>
-          Source{sources.length > 1 ? "s" : ""}:{" "}
+          Source{linksInText.length > 1 ? "s" : ""}:{" "}
           <span className="space-x-1">
-            {sources.map((source, index) => {
+            {linksInText.map((source, index) => {
               return (
                 <a
                   href={source}
