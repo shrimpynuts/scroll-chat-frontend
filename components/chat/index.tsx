@@ -96,6 +96,12 @@ export default function Search() {
     }
   };
 
+  const exampleQuestions = [
+    "How does Scroll work?",
+    "How do I deploy a contract?",
+    "Why should I build on Scroll?",
+  ];
+
   return (
     <div className="relative w-full rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-8">
       <div className="relative flex w-full flex-col justify-between">
@@ -138,6 +144,19 @@ export default function Search() {
           >
             <ArrowRightIcon className="h-6 w-6 text-gray-600" />
           </button>
+        </div>
+        <div className="mt-2 flex justify-end space-x-2">
+          {exampleQuestions.map((question, index) => (
+            <div
+              key={index}
+              className="cursor-pointer text-sm text-gray-500 hover:text-gray-700"
+              onClick={() => {
+                if (!scrollIsTyping) setTextArea(question);
+              }}
+            >
+              {question}
+            </div>
+          ))}
         </div>
       </div>
     </div>
