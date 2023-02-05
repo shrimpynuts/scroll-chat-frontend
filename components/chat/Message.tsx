@@ -13,7 +13,7 @@ const ScrollMessage = ({ text }: { text: string }) => {
     <div>
       <p>{first}</p>
       {linksInText.length > 0 && (
-        <div>
+        <div className="mt-2 text-xs">
           Source{linksInText.length > 1 ? "s" : ""}:{" "}
           <span className="space-x-1">
             {linksInText.map((source, index) => {
@@ -25,7 +25,8 @@ const ScrollMessage = ({ text }: { text: string }) => {
                   className="text-blue-600"
                   key={index}
                 >
-                  {source.length > 26 ? source.slice(0, 26) + "..." : source}
+                  {/* {source.length > 26 ? source.slice(0, 26) + "..." : source} */}
+                  [{index + 1}]
                 </a>
               );
             })}
